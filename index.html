@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Security Dashboard - Login</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(0,255,136,0.08), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(255,45,85,0.06), transparent 30%),
+        #050807;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0,255,136,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.025) 1px, transparent 1px);
+    background-size: 45px 45px;
+}
+
+.background span {
+    position: absolute;
+    border: 1px solid rgba(0,255,136,0.25);
+    animation: move 8s infinite linear;
+}
+
+.background span:nth-child(1) {
+    width: 20px;
+    height: 20px;
+    left: 8%;
+    top: 20%;
+}
+
+.background span:nth-child(2) {
+    width: 35px;
+    height: 35px;
+    right: 10%;
+    top: 15%;
+    animation-delay: 2s;
+}
+
+.background span:nth-child(3) {
+    width: 15px;
+    height: 15px;
+    left: 15%;
+    bottom: 15%;
+    animation-delay: 4s;
+}
+
+.background span:nth-child(4) {
+    width: 25px;
+    height: 25px;
+    right: 20%;
+    bottom: 20%;
+    animation-delay: 1s;
+}
+
+@keyframes move {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: translateY(-50px) rotate(180deg);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(0) rotate(360deg);
+        opacity: 0.2;
+    }
+}
+
+.login-container {
+    width: 950px;
+    max-width: 94%;
+    min-height: 570px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: rgba(8,13,11,0.97);
+    border: 1px solid rgba(0,255,136,0.25);
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    box-shadow:
+        0 0 60px rgba(0,255,136,0.08),
+        0 25px 80px rgba(0,0,0,0.7);
+}
+
+.security-section {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid rgba(0,255,136,0.12);
+    background: linear-gradient(
+        145deg,
+        rgba(0,255,136,0.07),
+        rgba(0,0,0,0.15)
+    );
+}
+
+.security-label {
+    color: #00ff88;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+}
+
+.security-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-ring {
+    width: 90px;
+    height: 90px;
+    border: 2px solid #00ff88;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0,255,136,0.25);
+    animation: logoPulse 2.5s infinite;
+}
+
+.logo-ring::before {
+    content: "";
+    position: absolute;
+    width: 68px;
+    height: 68px;
+    border: 1px dashed rgba(0,255,136,0.5);
+    border-radius: 50%;
+    animation: logoRotate 8s linear infinite;
+}
+
+.logo-core {
+    width: 45px;
+    height: 45px;
+    background: #00ff88;
+    clip-path: polygon(
+        50% 0%,
+        90% 18%,
+        90% 55%,
+        75% 78%,
+        50% 100%,
+        25% 78%,
+        10% 55%,
+        10% 18%
+    );
+    position: relative;
+}
+
+.logo-core::after {
+    content: "";
+    width: 17px;
+    height: 17px;
+    border: 3px solid #06110b;
+    border-radius: 50%;
+    position: absolute;
+    top: 11px;
+    left: 11px;
+}
+
+.logo-core span {
+    position: absolute;
+    width: 3px;
+    height: 9px;
+    background: #06110b;
+}
+
+.logo-core span:nth-child(1) {
+    transform: rotate(0deg) translateY(-11px);
+}
+
+.logo-core span:nth-child(2) {
+    transform: rotate(120deg) translateY(-11px);
+}
+
+.logo-core span:nth-child(3) {
+    transform: rotate(240deg) translateY(-11px);
+}
+
+@keyframes logoPulse {
+    0%,100% {
+        box-shadow: 0 0 15px rgba(0,255,136,0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 35px rgba(0,255,136,0.4);
+    }
+}
+
+@keyframes logoRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.security-section h1 {
+    font-size: 38px;
+    margin-bottom: 8px;
+}
+
+.security-section h2 {
+    font-size: 34px;
+    color: #00ff88;
+    margin-bottom: 25px;
+}
+
+.security-section p {
+    color: #87938d;
+    line-height: 1.7;
+    max-width: 380px;
+    font-size: 14px;
+}
+
+.security-status {
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #00ff88;
+    font-size: 13px;
+    width: fit-content;
+    padding: 9px 14px;
+    border: 1px solid rgba(0,255,136,0.2);
+    border-radius: 6px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00ff88;
+}
+
+.login-section {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-header {
+    margin-bottom: 35px;
+}
+
+.login-header .lock {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.login-header h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    color: #727d77;
+    font-size: 14px;
+}
+
+.input-group {
+    margin-bottom: 22px;
+}
+
+.input-group label {
+    display: block;
+    color: #c7d0cb;
+    font-size: 13px;
+    margin-bottom: 9px;
+}
+
+.input-box {
+    height: 52px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 15px;
+    background: #0b100e;
+    border: 1px solid #1e2923;
+    border-radius: 7px;
+    transition: 0.3s;
+}
+
+.input-box:focus-within {
+    border-color: #00ff88;
+    box-shadow: 0 0 18px rgba(0,255,136,0.08);
+}
+
+.input-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-size: 14px;
+}
+
+.input-box input::placeholder {
+    color: #4d5852;
+}
+
+#showPassword {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0 25px;
+    font-size: 12px;
+    color: #69756e;
+}
+
+.options label {
+    display: flex;
+    gap: 7px;
+}
+
+.options input {
+    accent-color: #00ff88;
+}
+
+.options a {
+    color: #00ff88;
+    text-decoration: none;
+}
+
+.login-button {
+    width: 100%;
+    height: 52px;
+    border: 1px solid #00ff88;
+    border-radius: 7px;
+    background: #00ff88;
+    color: #041008;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-button:hover {
+    background: #12ff94;
+    box-shadow: 0 0 25px rgba(0,255,136,0.25);
+    transform: translateY(-2px);
+}
+
+.secure-message {
+    text-align: center;
+    margin-top: 25px;
+    color: #4e5953;
+    font-size: 11px;
+}
+
+@media(max-width:768px) {
+
+    body {
+        overflow: auto;
+        padding: 20px 0;
+    }
+
+    .login-container {
+        grid-template-columns: 1fr;
+        max-width: 92%;
+        margin: 20px auto;
+    }
+
+    .security-section {
+        padding: 40px 30px;
+        align-items: center;
+        text-align: center;
+        border-right: none;
+        border-bottom: 1px solid rgba(0,255,136,0.12);
+    }
+
+    .security-logo {
+        margin-bottom: 20px;
+    }
+
+    .security-section h1 {
+        font-size: 29px;
+    }
+
+    .security-section h2 {
+        font-size: 27px;
+    }
+
+    .login-section {
+        padding: 40px 30px;
+    }
+}
+
+@media(max-width:400px) {
+
+    .security-section {
+        padding: 30px 20px;
+    }
+
+    .login-section {
+        padding: 30px 20px;
+    }
+
+    .security-section h1 {
+        font-size: 25px;
+    }
+
+    .security-section h2 {
+        font-size: 23px;
+    }
+
+    .login-header h2 {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="login-container">
+
+<div class="security-section">
+
+    <div class="security-label">
+        SECURE ACCESS SYSTEM
+    </div>
+
+    <div class="security-logo">
+        <div class="logo-ring">
+            <div class="logo-core">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <h1>Cyber Security</h1>
+    <h2>Dashboard</h2>
+
+    <p>
+        Monitor threats, detect suspicious activities
+        and protect your digital infrastructure from
+        cyber security attacks.
+    </p>
+
+    <div class="security-status">
+        <span class="status-dot"></span>
+        System Protected
+    </div>
+
+</div>
+
+<div class="login-section">
+
+    <div class="login-header">
+
+        <div class="lock">🔐</div>
+
+        <h2>Secure Login</h2>
+
+        <p>
+            Authenticate to access the security dashboard
+        </p>
+
+    </div>
+
+    <form id="loginForm">
+
+        <div class="input-group">
+
+            <label>Email ID</label>
+
+            <div class="input-box">
+                <span>📧</span>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Password</label>
+
+            <div class="input-box">
+                <span>🔑</span>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <button type="button" id="showPassword">
+                    👁️
+                </button>
+            </div>
+
+        </div>
+
+        <div class="options">
+
+            <label>
+                <input type="checkbox">
+                Remember me
+            </label>
+
+            <a href="#">
+                Forgot Password?
+            </a>
+
+        </div>
+
+        <button type="submit" class="login-button">
+            AUTHENTICATE →
+        </button>
+
+    </form>
+
+    <div class="secure-message">
+        🔒 Encrypted connection • Secure authentication
+    </div>
+
+</div>
+
+</div>
+
+<script>
+const password = document.getElementById("password");
+const showPassword = document.getElementById("showPassword");
+
+showPassword.addEventListener("click", function() {
+
+    if (password.type === "password") {
+        password.type = "text";
+        showPassword.textContent = "🙈";
+    } else {
+        password.type = "password";
+        showPassword.textContent = "👁️";
+    }
+
+});
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const passwordValue = password.value.trim();
+
+    if (email === "" || passwordValue === "") {
+        alert("Please enter your Email ID and Password.");
+        return;
+    }
+
+    window.location.href = "dashboard.html";
+
+});
+</script>
+
+</body>
+</html>
